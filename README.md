@@ -1,16 +1,76 @@
-# React + Vite
+# Todo List App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, lightweight Todo List built with React. Add tasks, mark them as done, and delete them — all backed by clean, minimal component state.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Add tasks** — Type a task and add it to your list.
+- **Mark as done** — Toggle a task's completion status; completed tasks are shown with a strikethrough.
+- **Delete tasks** — Remove any task from the list.
+- **Unique IDs** — Each task gets a unique ID via `uuid`, so updates and deletes always target the correct item.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [React](https://react.dev/) (functional components + hooks)
+- [uuid](https://www.npmjs.com/package/uuid) for generating unique task IDs
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or later recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository or copy the component into your project.
+2. Install dependencies:
+
+   ```bash
+   npm install uuid
+   ```
+
+3. Import and render the component in your app:
+
+   ```jsx
+   import TodoList from './TodoList';
+
+   function App() {
+     return <TodoList />;
+   }
+
+   export default App;
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+## How It Works
+
+- `todos` — An array of task objects (`{ Task, id, isDone }`) held in state.
+- `newTodo` — Tracks the current value of the input field.
+- `addnewTodo()` — Appends a new task object to `todos` and clears the input.
+- `updatenewTodo()` — Updates `newTodo` as the user types.
+- `deleteTodo(id)` — Filters out the task matching the given `id`.
+- `isDone(id)` — Toggles the `isDone` flag for the matching task, which controls the strikethrough style.
+
+## Project Structure
+
+```
+TodoList.jsx   # Main component containing all todo logic and UI
+```
+
+## Possible Improvements
+
+- Persist todos to `localStorage` so tasks survive page refreshes.
+- Add input validation (e.g., prevent adding empty tasks).
+- Add editing support for existing tasks.
+- Extract list items into a separate `TodoItem` component for readability.
+- Add styling (CSS modules, Tailwind, etc.) beyond inline styles.
+
+## License
+
+This project is open source and available for personal or educational use.
